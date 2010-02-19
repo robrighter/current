@@ -21,7 +21,10 @@ div.hr hr { display: none; }
 #currentHeader #logo { float: left; }
 #currentHeader #logo a { float: left; width: 250px; height:0; overflow:hidden; padding-top:22px; background: url(/images/logo.png) top left no-repeat; }
 #currentHeader #play-pause { float: right; }
-#currentHeader #play-pause a { float: right; width: 30px; height: 0; overflow:hidden; padding-top: 30px; background: url(/images/pause.png) top left no-repeat; }
+#currentHeader #play-pause a { float: right; width: 30px; height: 0; overflow:hidden; padding-top: 30px; }
+.pausebutt {background: url(/images/pause.png) top left no-repeat;}
+.playbutt {background: url(/images/play.png) top left no-repeat;}
+
 
 /* CONTENT */
 #currentContent { position: relative; margin-top: 30px; }

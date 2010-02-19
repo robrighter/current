@@ -1,6 +1,7 @@
 
 var lastrecieved = -1;
 var idoflast = 1;
+var interrupt = false;
 
 function getupdate(since){
 	var url = "/update";
@@ -10,20 +11,17 @@ function getupdate(since){
 	
 	$.getJSON(url,
 			  function(data){
-				  var itemstoadd = _.map(data.reverse(), function(item){
-				     return domainmarkup(item['value']);
-				     lastrecieved = item["offset"]; 
+			      var itemstoadd = _.map(data.reverse(), function(item){
+				     lastrecieved = item["offset"];
+				     return domainmarkup(item['value']); 
 				  });
 				  
-				  //new
 				  var uc = $("#updatedcontent");
 				  _.map(itemstoadd, function(item){
-				     uc.prepend(item); 
+				     if(!interrupt){
+				         uc.prepend(item);
+				     }
 				  });
-				  
-				  //old
-				  //$("#updatedcontent").prepend(itemstoadd.join(''));
-				  
 				  removeoutofframeboxes();
 				  setTimeout('getupdate(lastrecieved)', 1000);
 			  });
@@ -38,6 +36,27 @@ function removeoutofframeboxes(){
     while( $("#updatedcontent .visible").toArray().length > 780) {
         $("#updatedcontent .visible").last().remove();
     }
+}
+
+function stopstart(){
+    if(interrupt){
+        startit();
+    }
+    else{
+        stopit();
+    }
+}
+
+function stopit(){
+    interrupt = true;
+    $('#currentHeader #play-pause a').removeClass('pausebutt');
+    $('#currentHeader #play-pause a').addClass('playbutt');
+}
+
+function startit(){
+    interrupt = false;
+    $('#currentHeader #play-pause a').removeClass('playbutt');
+    $('#currentHeader #play-pause a').addClass('pausebutt');
 }
 
 // 765
