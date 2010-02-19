@@ -1,0 +1,62 @@
+/* RESET */
+html,body,div,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,p,blockquote,fieldset,input { margin: 0; padding: 0; }
+h1,h2,h3,h4,h5,h6,pre,code,address,caption,cite,code,em,strong,th { font-size: 1em; font-weight: normal; font-style: normal; }
+ul,ol { list-style: none; }
+fieldset,img { border: 0 none; }
+caption,th { text-align: left; }
+table { border-collapse: collapse; border-spacing: 0; }
+a:focus, div:focus { outline: 0; }
+/*{ behavior: url(/exceed/css/iepngfix.htc); }*/
+
+/* TYPE */
+body { background: url(/images/current-back.png) top center repeat; font-family: Arial, sans-serif; }
+div.hr { height: 2px; color: rgb(236, 230, 208); background: rgb(236, 230, 208) scroll center; }
+div.hr hr { display: none; }
+
+/* MAIN WRAPPER */
+#mainWrapper { width: 980px; left:0; right: 0; margin: 40px auto; }
+
+/* HEADER */
+#currentHeader { position: relative; height: 30px; }
+#currentHeader #logo { float: left; }
+#currentHeader #logo a { float: left; width: 250px; height:0; overflow:hidden; padding-top:22px; background: url(/images/logo.png) top left no-repeat; }
+#currentHeader #play-pause { float: right; }
+#currentHeader #play-pause a { float: right; width: 30px; height: 0; overflow:hidden; padding-top: 30px; background: url(/images/pause.png) top left no-repeat; }
+
+/* CONTENT */
+#currentContent { position: relative; margin-top: 30px; }
+#currentContent #currentWrapper { width: 980px; height: 392px; background: rgb(23, 23, 23); overflow: hidden; }
+#currentContent #currentWrapper #updatedcontent { position: absolute; width: 950px; height: 337px; padding:20px 20px 20px 15px; overflow: hidden; }
+#currentContent #currentWrapper #updatedcontent div.item { position: relative; float: left; width: 16px; height: 16px; margin: 0 0 5px 5px; display: inline; z-index: 5; }
+#currentContent div.callout { position: absolute; width: 282px; height: 198px; font-family: Arial; font-size: 12px; color: rgb(255, 255, 255); padding: 20px 5px 20px 20px; line-height: 18px; margin-top: -238px; z-index: 1000; }
+#currentContent #callout1 { float: left; }
+#currentContent #callout2 { left: 0; right: 0; margin-left: auto; margin-right: auto; }
+#currentContent #callout3 { float: right; right: 0; }
+#currentContent #callout1 #aboutCurrent { width: 159px; height: 0; overflow: hidden; padding-top: 12px; background: url(/images/about-current.png) top left no-repeat; margin-bottom: 15px; }
+#currentContent #callout2 #getCurrent { width: 134px; height: 0; overflow: hidden; padding-top: 12px; background: url(/images/get-current.png) top left no-repeat; margin-bottom: 15px; }
+#currentContent #callout3 #mediumLabs { width: 176px; height: 0; overflow: hidden; padding-top: 23px; background: url(/images/medium-labs.png) top left no-repeat; margin-bottom: 15px; }
+#currentContent div.callout #rest { margin-top: 10px; }
+#currentContent #callout2 #github a { position: absolute; float: left; width: 266px; height: 0; overflow: hidden; padding-top: 41px; background: url(/images/download-source.png) top left no-repeat; margin-top: 20px; }
+#currentContent #callout2 #github a:hover { background: url(/images/download-source-roll.png) top left no-repeat; }
+#currentContent #callout3 #node a { float: left; width: 96px; height: 0; overflow: hidden; padding-top: 33px; background: url(/images/node-js.png) top left no-repeat; margin-top: 20px; }
+#currentContent #callout3 #node a:hover { background: url(/images/node-js-roll.png) top left no-repeat; }
+#currentContent div.calloutBox { width: 307px; height: 238px; background: rgb(23, 23, 23); opacity: 0.6; filter: alpha(opacity=60); margin-top: 30px; z-index: 0; }
+#currentContent #calloutBox1 { float: left; }
+#currentContent #calloutBox2 { left: 0; right: 0; margin-left: auto; margin-right: auto; }
+#currentContent #calloutBox3 { float: right; }
+
+/* FOOTER */
+#currentFooter { font-family: Arial; font-size: 10px; color: rgb(51, 51, 51); margin-top: 20px; }
+#currentFooter #copyright { float: left; }
+#currentFooter #siteByMedium { float: right; }
+#currentFooter #siteByMedium a { color: rgb(51, 51, 51); text-decoration:none;}
+
+.item img{
+    width :16px;
+    height:16px;
+    background-color:#666666;
+}
+
+.red {
+    border: 1px solid red;
+}
