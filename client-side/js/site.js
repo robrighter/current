@@ -32,8 +32,7 @@ function domainmarkup(domain){
 }
 
 function removeoutofframeboxes(){
-    toremove = $("#updatedcontent .item").toArray().slice(805);
-    while( $("#updatedcontent .visible").toArray().length > 780) {
+    while( $("#updatedcontent .visible").toArray().length > 800) {
         $("#updatedcontent .visible").last().remove();
     }
 }
