@@ -7,6 +7,22 @@ var url = require("url");
 HOST = null; // localhost
 PORT = 8070;
 
+sys.exec("echo $SITESV_SERVER_HOST").addCallback(function(data) { 
+    thehost = data.trim();
+    if(thehost !== ''){
+        HOST = thehost
+    }
+}).wait();
+
+
+sys.exec("echo $SITESV_SERVER_PORT").addCallback(function(data) { 
+    theport = data.trim();
+    if(theport !== ''){
+        PORT = theport
+    }
+}).wait();
+
+
 //helper function
 String.prototype.trim = function() {
     return this.replace(/^\s+|\s+$/g,"");
@@ -14,7 +30,7 @@ String.prototype.trim = function() {
 
 // Now start the program
 fu.listen(PORT, HOST);
-var rb = new lpb.LongPollingBuffer(55);
+var rb = new lpb.LongPollingBuffer(70);
 var dump = process.createChildProcess("tcpdump",["-i","en1","-A","-n","port", "80"]);
 
 //Setup the listener to handle the flow of data from the dump 
