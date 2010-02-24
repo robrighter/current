@@ -49,7 +49,7 @@ div.hr hr { display: none; }
 #currentContent #calloutBox3 { float: right; }
 
 /* FOOTER */
-#currentFooter { font-family: Arial; font-size: 10px; color: rgb(51, 51, 51); margin-top: 20px; }
+#currentFooter { font-family: Arial; font-size: 10px; color: rgb(51, 51, 51); margin-top: 20px; height:20px; margin-padding:40px;}
 #currentFooter #copyright { float: left; }
 #currentFooter #siteByMedium { float: right; }
 #currentFooter #siteByMedium a { color: rgb(51, 51, 51); text-decoration:none;}

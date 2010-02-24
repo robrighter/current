@@ -6,6 +6,11 @@
     <meta name="Description" content="See what the Medium team is looking at online"/>
     <meta name="Keywords" content="Node.js, Medium, real time"/>
 	<link rel="stylesheet" href="/css/site.css" type="text/css">
+	<!--[if lt IE 8]>
+	     <style type="text/css">
+	        html #currentContent #currentWrapper #currentFlow { width: 930px; }
+	     </style>
+	<![endif]-->
 	<script src="http://www.google.com/jsapi"></script>
 	<script src="/js/underscore.js"></script>
 	<script>
@@ -23,7 +28,7 @@
    <div id="mainWrapper">
       <div id="currentHeader">
          <div id="logo">
-            <a href="current.html">Home</a>
+            <a href="/">Home</a>
          </div><!--/logo-->
          <div id="play-pause">
             <a href="#" onclick="stopstart();return false;" class="pausebutt">Play/Pause</a>
@@ -877,7 +882,7 @@
             Current is a real time feed of favicons from websites that are visited from inside the Medium office. Watch as the Medium team compulsively checks Hacker News &amp; Design Observer, or see the constant flow<br />of Evernotes sync. By watching this feed you will discover our odd infatuation with YTMND, Geeked out Reddit threads, design blogs, and other bizarre attractions found on the Intertubes.<br />
          </div><!--/.callout-->
          <div class="callout" id="callout3">
-            <div id="mediumLabs">Medium Labs</div>
+            <a href="http://thisismedium.com/labs/"><div id="mediumLabs">Medium Labs</div></a>
             Medium Labs is a collection of software projects and development related articles created by the Medium Software Development team. Each of the Labs projects are developed by Medium and made available to the public via open source license.
             <div id="node">
                <a href="http://nodejs.org">Powered by Node.js</a>
