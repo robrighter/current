@@ -7,24 +7,6 @@ var url = require("url");
 HOST = null; // localhost
 PORT = 8070;
 
-sys.exec("echo $SITESV_SERVER_HOST", function (err, stdout, stderr) {
-  if (err) throw err;
-  thehost = stdout.trim();
-  if(thehost !== ''){
-      HOST = thehost
-  }
-});
-
-sys.exec("echo $SITESV_SERVER_PORT", function (err, stdout, stderr) {
-  if (err) throw err;
-  theport = stdout.trim();
-  if(theport !== ''){
-      PORT = theport
-  }
-});
-
-
-// Now start the program
 fu.listen(PORT, HOST);
 var rb = new lpb.LongPollingBuffer(70);
 var dump = process.createChildProcess("tcpdump",["-i","en1","-A","-n","port", "80"]);
@@ -82,6 +64,3 @@ fu.get("/images/node-js.png", fu.staticHandler("./client-side/images/node-js.png
 fu.get("/images/pause.png", fu.staticHandler("./client-side/images/pause.png"));
 fu.get("/images/play.png", fu.staticHandler("./client-side/images/play.png"));
 fu.get("/favicon.ico", fu.staticHandler("./client-side/images/favicon.ico"));
-
-  
-  
