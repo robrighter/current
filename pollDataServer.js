@@ -1,49 +1,51 @@
-var fu = require("./lib/fu");
-var sys = require('sys');
 require("./client-side/js/underscore");
-var lpb = require("./lib/longpollingbuffer");
-var url = require("url");
+var fu = require("./lib/fu"),
+    sys = require('sys'),
+    spawn = require("child_process").spawn
+    lpb = require("./lib/longpollingbuffer"),
+    url = require("url");
 
 HOST = null; // localhost
 PORT = 8070;
+INTERFACE = "en1"
 
 fu.listen(PORT, HOST);
 var rb = new lpb.LongPollingBuffer(70);
-var dump = process.createChildProcess("tcpdump",["-i","en1","-A","-n","port", "80"]);
-var ignorelist = ['localhost','foxnews.com'];
-//Setup the listener to handle the flow of data from the dump 
-dump.addListener("output", function (data) {    
-    var hosts = data.match(/Host: (.*)/g);
-    if(hosts){
-        _.each(hosts, function(item){
-            var out = item.slice(6);
-            sys.puts(out);
-            if(!_.detect(ignorelist, function(s){ return (item.indexOf(s) > -1); })){
-                rb.push(out);
-            }
-            
-        });    
-    }
+var tcpdump = spawn("tcpdump", ["-i", INTERFACE, "-A", "-n", "port", "80"]);
+var ignorelist = ['localhost', 'foxnews.com'];
+
+//Setup the listener to handle the flow of data from the tcpdump
+tcpdump.stdout.on('data', function (data) {
+  var hosts = (new String(data)).match(/Host: (.*)/g);
+  if(hosts){
+    _.each(hosts, function(item){
+      var out = item.slice(6);
+      sys.puts(out);
+      if(!_.detect(ignorelist, function(s){ return (item.indexOf(s) > -1); })){
+        rb.push(out);
+      }
+    });
+  }
 });
 
 
 //Setup the updater page for long polling  
 fu.get("/update", function (req, res) {
-      res.sendHeader(200,{"Content-Type": "text/html"});
-      var thesince;
-      if(url.parse(req.url,true).hasOwnProperty('query') && url.parse(req.url,true).query.hasOwnProperty('since')){
-          thesince = parseInt(url.parse(req.url,true)['query']['since']);
-      }
-      else {
-          thesince = -1;
-      }
-      rb.addListenerForUpdateSince(thesince, function(data){
-           var body = '['+_.map(data,JSON.stringify).join(',\n')+']';
-           res.write( body );
-           res.close();
-      });
+  res.sendHeader(200,{"Content-Type": "text/html"});
+  var thesince;
+  if(url.parse(req.url,true).hasOwnProperty('query') && url.parse(req.url,true).query.hasOwnProperty('since')){
+    thesince = parseInt(url.parse(req.url,true)['query']['since']);
+  }
+  else {
+    thesince = -1;
+  }
+  rb.addListenerForUpdateSince(thesince, function(data){
+    var body = '['+_.map(data,JSON.stringify).join(',\n')+']';
+    res.write( body );
+    res.close();
+  });
 });
-  
+
 // Static Files
 fu.get("/", fu.staticHandler("./client-side/index.html"));
 fu.get("/css/site.css", fu.staticHandler("./client-side/css/site.css"));
